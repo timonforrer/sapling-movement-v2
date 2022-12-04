@@ -1,4 +1,3 @@
-import React from 'react'
 import { FiHelpCircle, FiInfo, FiAlertTriangle } from 'react-icons/fi'
 import { toPlainText } from '@portabletext/react'
 
