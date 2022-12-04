@@ -2,7 +2,10 @@ export default {
   name: 'blogPost',
   title: 'Blog Posts',
   type: 'document',
-  // i18n: true,
+  i18n: true,
+  initialValue: {
+    __i18n_lang: 'de',
+  },
   fields: [
     {
       name: 'meta',

@@ -5,7 +5,10 @@ export default {
   name: 'glossary',
   title: 'Glossary',
   type: 'document',
-  // i18n: true,
+  i18n: true,
+  initialValue: {
+    __i18n_lang: 'de',
+  },
   fields: [
     {
       name: 'meta',

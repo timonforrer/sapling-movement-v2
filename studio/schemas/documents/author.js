@@ -2,7 +2,10 @@ export default {
   name: 'author',
   title: 'Authors',
   type: 'document',
-  // i18n: true,
+  initialValue: {
+    __i18n_lang: 'de',
+  },
+  i18n: true,
   fields: [
     {
       name: 'meta',
