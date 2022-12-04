@@ -16,6 +16,21 @@ export default {
       title: 'Author',
       type: 'reference',
       to: [{ type: 'author' }],
+      options: {
+        filter: ({ document }) => {
+          if (!document.__i18n_lang) {
+            return {
+              filter: '__i18n_lang == $lang',
+              params: { lang: 'de' }
+            }
+          }
+
+          return {
+            filter: '__i18n_lang == $lang',
+            params: { lang: document.__i18n_lang }
+          }
+        }
+      }
     },
     {
       name: 'summary',
@@ -33,6 +48,21 @@ export default {
         {
           type: 'reference',
           to: [{ type: 'glossary' }],
+          options: {
+            filter: ({ document }) => {
+              if (!document.__i18n_lang) {
+                return {
+                  filter: '__i18n_lang == $lang',
+                  params: { lang: 'de' }
+                }
+              }
+
+              return {
+                filter: '__i18n_lang == $lang',
+                params: { lang: document.__i18n_lang }
+              }
+            }
+          }
         },
         {
           type: 'callout'

@@ -41,6 +41,21 @@ export default {
       title: 'Parent page',
       type: 'reference',
       to: [{ type: 'blogPost' }],
+      options: {
+        filter: ({ document }) => {
+          if (!document.__i18n_lang) {
+            return {
+              filter: '__i18n_lang == $lang',
+              params: { lang: 'de' }
+            }
+          }
+
+          return {
+            filter: '__i18n_lang == $lang',
+            params: { lang: document.__i18n_lang }
+          }
+        }
+      }
     },
     {
       name: 'slug',
