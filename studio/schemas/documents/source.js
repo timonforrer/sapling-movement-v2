@@ -2,7 +2,6 @@ export default {
   name: 'source',
   title: 'Sources',
   type: 'document',
-  // i18n: true,
   fields: [
     {
       name: 'shortTitle',
