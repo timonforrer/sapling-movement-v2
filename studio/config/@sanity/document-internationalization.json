@@ -1,0 +1,13 @@
+{
+  "languages": [
+    {
+      "id": "de",
+      "title": "Deutsch"
+    },
+    {
+      "id": "en",
+      "title": "English"
+    }
+  ],
+  "idStructure": "subPath"
+}
