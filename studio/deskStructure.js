@@ -5,6 +5,32 @@ export default () =>
     .title('Main')
     .items([
       S.listItem()
+        .title('Settings')
+        .child(
+          S.documentList()
+            .title('Settings')
+            .schemaType('settings')
+            .filter('_type == "settings" && __i18n_lang == $baseLanguage')
+            .params({ baseLanguage: 'de' })
+            .canHandleIntent(S.documentTypeList('settings').getCanHandleIntent())
+        ),
+      S.divider(),
+      S.listItem()
+        .title('Modular Pages')
+        .child(
+          S.documentTypeList('documentGroup')
+            .defaultOrdering(
+              [{field: 'ordering', direction: 'asc'}]
+            )
+            .title('Modular Pages by Document Group')
+            .child(groupId =>
+              S.documentList()
+                .title('Modular Pages')
+                .filter('_type == "modularPage" && __i18n_lang == $baseLanguage && $groupId == documentGroup._ref')
+                .params({ baseLanguage: 'de', groupId })
+            )
+        ),
+      S.listItem()
         .title('Blog Posts')
         .child(
           S.documentList()
@@ -25,6 +51,17 @@ export default () =>
             .canHandleIntent(S.documentTypeList('glossary').getCanHandleIntent())
         ),
       S.listItem()
+        .title('Authors')
+        .child(
+          S.documentList()
+            .title('Authors')
+            .schemaType('author')
+            .filter('_type == "author" && __i18n_lang == $baseLanguage')
+            .params({ baseLanguage: 'de' })
+            .canHandleIntent(S.documentTypeList('author').getCanHandleIntent())
+        ),
+      S.divider(),
+      S.listItem()
         .title('Sources')
         .child(
           S.documentList()
@@ -35,13 +72,12 @@ export default () =>
             .canHandleIntent(S.documentTypeList('source').getCanHandleIntent())
         ),
       S.listItem()
-        .title('Authors')
+        .title('Document Groups')
         .child(
           S.documentList()
-            .title('Authors')
-            .schemaType('author')
-            .filter('_type == "author" && __i18n_lang == $baseLanguage')
-            .params({ baseLanguage: 'de' })
-            .canHandleIntent(S.documentTypeList('author').getCanHandleIntent())
-        )
+            .title('Document Groups')
+            .schemaType('documentGroup')
+            .filter('_type == "documentGroup"')
+            .canHandleIntent(S.documentTypeList('documentGroup').getCanHandleIntent())
+        ),
     ])
