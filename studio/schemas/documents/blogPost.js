@@ -1,3 +1,5 @@
+import { filterRefByLang } from "../../utils"
+
 export default {
   name: 'blogPost',
   title: 'Blog Posts',
@@ -17,19 +19,7 @@ export default {
       type: 'reference',
       to: [{ type: 'author' }],
       options: {
-        filter: ({ document }) => {
-          if (!document.__i18n_lang) {
-            return {
-              filter: '__i18n_lang == $lang',
-              params: { lang: 'de' }
-            }
-          }
-
-          return {
-            filter: '__i18n_lang == $lang',
-            params: { lang: document.__i18n_lang }
-          }
-        }
+        filter: (input) => filterRefByLang(input)
       }
     },
     {
@@ -49,19 +39,7 @@ export default {
           type: 'reference',
           to: [{ type: 'glossary' }],
           options: {
-            filter: ({ document }) => {
-              if (!document.__i18n_lang) {
-                return {
-                  filter: '__i18n_lang == $lang',
-                  params: { lang: 'de' }
-                }
-              }
-
-              return {
-                filter: '__i18n_lang == $lang',
-                params: { lang: document.__i18n_lang }
-              }
-            }
+            filter: (input) => filterRefByLang(input)
           }
         },
         {
