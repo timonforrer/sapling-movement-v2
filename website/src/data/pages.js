@@ -31,7 +31,7 @@ module.exports = async function() {
       }
     }`
 
-  // encode the query, to be used in URL
+  // escape special characters, so the query can be passed to the URL
   query = encodeURIComponent(query);
 
   // complete url consisting of <project_id>.api.sanity.io/<api version as YYYY-MM-DD>
