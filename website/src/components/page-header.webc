@@ -1,0 +1,7 @@
+<script webc:type="js" webc:is="template">
+  `<header>
+    <nav>
+      ${lang}
+    </nav>
+  </header>`
+</script>
