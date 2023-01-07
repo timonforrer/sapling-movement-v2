@@ -1,0 +1,18 @@
+---
+layout: "base.webc"
+title: "preview of sites"
+---
+<script webc:type="render" webc:is="template">
+  function render() {
+    let pages = this.pages
+    return `<div>
+      <h1>List of pages</h1>
+      <ul>
+        ${Object.keys(pages).map((key, index) => {
+          let page = pages[key];
+          return `<li><a href="/preview/${key}">${page.meta.title}</a></li>`
+        }).join('')}
+      </ul>
+    </div>`
+  }
+</script>
