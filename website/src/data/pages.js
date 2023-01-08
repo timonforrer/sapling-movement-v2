@@ -10,7 +10,10 @@ module.exports = async function() {
         author->,
         blocks[] {
           ...,
-          _type == "image" => @->,
+          _type == "image" => {
+            ...,
+            asset->
+          },
           _type == "richtext" => {
             ...,
             children[] {
