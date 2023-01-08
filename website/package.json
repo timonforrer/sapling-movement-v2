@@ -6,7 +6,7 @@
   "scripts": {
     "build": "npx @11ty/eleventy",
     "clean": "rm -rf dist",
-    "dev": "npx @11ty/eleventy --serve",
+    "dev": "DEV=true npx @11ty/eleventy --serve",
     "dev:nocache": "NO_CACHE=true npx @11ty/eleventy --serve",
     "start": "npm run clean && netlify dev"
   },
@@ -26,5 +26,8 @@
     "@11ty/eleventy-plugin-webc": "^0.8.1",
     "dotenv": "^16.0.3",
     "node-fetch": "^2.6.7"
+  },
+  "dependencies": {
+    "@portabletext/to-html": "^1.0.4"
   }
 }
