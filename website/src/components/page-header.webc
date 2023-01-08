@@ -1,7 +1,46 @@
-<script webc:type="js" webc:is="template">
-  `<header>
-    <nav>
-      ${lang}
-    </nav>
-  </header>`
+<script webc:type="render" webc:is="template">
+  function render() {
+    let {
+      global,
+      lang,
+      pages,
+      page_content: page
+    } = this;
+
+    let langs = getLangs(page);
+
+    return `
+    <header>
+      <nav>
+        <ul>
+          ${global[lang].navigation.map((item) => {
+            return `
+              <li><a href="${pages[item.page._ref].meta.slug.current}">${item.title}</a></li>
+            `
+          }).join('')}
+        </ul>
+      </nav>
+      <div>
+        <ul>
+          ${Object.keys(langs).map((key, index) => {
+            let lang_item = langs[key];
+            // check if the lang_item is the current page
+            // if yes, only render a list item
+            if(lang_item.active) {
+              return `<li>${key.toUpperCase()}</li>`;
+            } else {
+              // otherwise render an anchor link
+              return `
+                <li>
+                  <a hreflang="${key}" href="${pages[lang_item.id].meta.slug.current}">
+                    ${key.toUpperCase()}
+                  </a>
+                </li>
+              `
+            }
+          }).join('')}
+        </ul>
+      </div>
+    </header>`
+  }
 </script>
