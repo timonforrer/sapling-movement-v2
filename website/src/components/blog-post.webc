@@ -1,2 +1,20 @@
+<div>
+  <img
+    alt=""
+    aspect="120:63"
+    :height="page_content.meta.image.asset.metadata.dimensions.height"
+    :src="page_content.meta.image.asset.url"
+    :width="page_content.meta.image.asset.metadata.dimensions.width"
+    />
+  <h1 @html="title"></h1>
+  <p><b @html="page_content.summary"></b></p>
+</div>
 <div webc:nokeep @html="portableTextToHTML(page_content.blocks)">
 </div>
+
+<style>
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+</style>
