@@ -1,5 +1,6 @@
 const { EleventyServerlessBundlerPlugin, EleventyRenderPlugin } = require('@11ty/eleventy');
 const WebC = require('@11ty/eleventy-plugin-webc');
+const getLangs = require('./src/utils/getLangs');
 require('dotenv').config();
 
 /**
@@ -19,6 +20,8 @@ module.exports = function(config) {
   config.addPlugin(WebC, {
     components: 'src/components/*.webc'
   });
+
+  config.addJavaScriptFunction(getLangs);
   
   return {
     dir: {
