@@ -1,0 +1,2 @@
+<div webc:nokeep @html="portableTextToHTML(page_content.blocks)">
+</div>
