@@ -1,0 +1,48 @@
+<script webc:type="render" webc:is="template">
+  const Image = require('@11ty/eleventy-img');
+  const imageUrlBuilder = require('@sanity/image-url');
+
+  module.exports = async function() {
+    let {
+      alt,
+      aspect,
+      height,
+      src,
+      width
+    } = this;
+
+    let url = src;
+
+    // handle cropping
+    // the way it's currently setup, it will scale the images up under certain conditions
+    if(aspect) {
+      // turn the property value (e.g. `16x9`) into array of numbers (e.g. [16, 9])
+      let _aspect = aspect.split(':');
+      let dimensions = {
+        width: width,
+        // calculate height based on aspect
+        // example: aspect = 16:9, width = 1200
+        // --> height: 9/16*1200 = 675
+        height: _aspect[1]/_aspect[0]*width
+      }
+      url = `${url}?w=${dimensions.width}&h=${dimensions.height}&fit=crop`;
+    }
+
+    let metadata = await Image(url, {
+      widths: [400,800,1200,2000],
+      formats: ['avif', 'webp', 'jpeg'],
+      outputDir: 'dist/img/',
+    });
+
+    let imageAttributes = {
+      alt: alt,
+      sizes: '100vw',
+      loading: 'lazy',
+      decoding: 'async',
+      'webc:raw': true,
+    };
+
+    // You bet we throw an error on missing alt in `imageAttributes` (alt='' works okay)
+    return Image.generateHTML(metadata, imageAttributes);
+  }
+</script>
