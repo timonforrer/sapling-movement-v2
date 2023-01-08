@@ -1,0 +1,4 @@
+<div>
+  <h2 @html="heading"></h2>
+  <div><slot></slot></div>
+</div>
