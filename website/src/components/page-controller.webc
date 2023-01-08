@@ -1,5 +1,4 @@
 <script webc:type="js" webc:is="template">
-  console.log(lang);
   `<p>
     This is from a webc file!
   </p>`
