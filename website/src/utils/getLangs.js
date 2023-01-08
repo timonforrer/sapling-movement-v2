@@ -1,5 +1,5 @@
 /**
- * @param {string} page
+ * @param {Object} page
 */
 
 // this is spaghetti code – but it works
