@@ -1,5 +1,35 @@
-<script webc:type="js" webc:is="template">
-  `<p>
-    This is from a webc file!
-  </p>`
+<script webc:type="render" webc:is="template">
+  function render() {
+    let {
+      page_content
+    } = this;
+
+    // placeholder variable for data logging
+    let LOG;
+
+    // if in dev env, render the data inside a `pre` tag
+    if(process.env.DEV) {
+      LOG = `
+        <details>
+          <summary>Data</summary>
+          <pre>${JSON.stringify(page_content, null, 2)}</pre>
+        </details>
+      `
+    }
+
+    // mapping the page type to the corresponding components
+    let componentsMap = {
+      modularPage: 'modular-page',
+      blogPost: 'blog-post',
+    }
+
+    // set the current component type
+    let component = componentsMap[page_content._type] ?? 'undefined-component'
+
+    return `
+      <${component}>
+      </${component}>
+      ${LOG}
+    `
+  }
 </script>
